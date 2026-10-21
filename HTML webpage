@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {font-family:arial;
+          font-size:medium;}
+
+input, select {font-size: medium;
+                       box-sizing: border-box;
+                       border: 1px solid #c8daea;
+                       padding: 3px;
+                       border-radius: 4px;
+                       outline: none;}
+                       input[type=text]:focus {
+                       background-color: #edf3f8;}
+
+input[type=submit], input[type=reset] {background-color: #dae7f1;
+                                                                  padding: 6px;}
+
+input[type=submit]:hover, input[type=reset]:hover {background-color: #b6cee2;}
+
+input[type=checkbox], input[type=radio] {width: 17px;
+                                                                      height: 17px;
+                                                                      //margin: 0.4em;}
+
+select {background-color: #edf3f8;}
+
+a:link, a:visited {color: #1d5d88;
+                            border-bottom: 1px solid;
+                            text-decoration: none;}
+a:hover {color: #152837;
+               border-bottom: 1px solid;
+               text-decoration: none;}
+
+div.release-info {margin-bottom: 1em;}
+
+form h2 {font-size: medium;
+               font-weight: bold;}
+ul.input-block, .list-unstyled {list-style: none;}
+
+footer {margin-bottom: 2.5em;}
+
+div.right {float: right;}
+div.left {float: left;}
+
+.indent {margin-left: 40px;}
+
+.noindent {margin-left: 0;}
+
+ul.noindent {list-style-type: none;
+                      padding-inline: 0;}
+
+.help-description h2 {font-size: x-large;
+                                   font-weight: bold;}
+
+.help-change-history ul {list-style-type: square;}
+
+// snipped from BS
+
+.py-0 {padding-top: 0 !important;
+  padding-bottom: 0 !important;}
+
+.py-1 {padding-top: 0.25rem !important;
+           padding-bottom: 0.25rem !important;}
+
+.py-2 {padding-top: 0.5rem !important;
+           padding-bottom: 0.5rem !important;}
+
+.py-3 {padding-top: 1rem !important;
+           padding-bottom: 1rem !important;}
+
+.py-4 {padding-top: 1.5rem !important;
+           padding-bottom: 1.5rem !important;}
+
+.py-5 {padding-top: 3rem !important;
+           padding-bottom: 3rem !important;}
+
+.pt-0 {padding-top: 0 !important;}
+
+.pt-1 {padding-top: 0.25rem !important;}
+
+.pt-2 {padding-top: 0.5rem !important;}
+
+.pt-3 {padding-top: 1rem !important;}
+
+.pt-4 {padding-top: 1.5rem !important;}
+
+.pt-5 {padding-top: 3rem !important;}
+
+.pb-0 {padding-bottom: 0 !important;}
+
+.pb-1 {padding-bottom: 0.25rem !important;}
+
+.pb-2 {padding-bottom: 0.50rem !important;}
+
+.pb-3 {padding-bottom: 1rem !important;}
+
+.pb-4 {padding-bottom: 1.5rem !important;}
+
+.pb-5 {padding-bottom: 3rem !important;}
+</style>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="These forms enable you to generate a diagram showing the appearance of a planetary system at a specified time. Bodies and rings are rendered with terminators and shadows as appropriate">
+    <title>Jupiter Viewer 3.1</title>
+</head>
+<body>
+    <div class="container form" role="main">
+        <h1>Jupiter Viewer v3.1</h1>
+
+        <form method="PUT" action="/cgi-bin/tools/viewer3_xxx.pl">
+
+            <input type="hidden" name="abbrev" value="jup"/>
+            <input type="hidden" name="version" value="3.1"/>
+
+            <div class="release-info">
+                <strong>2022-08-03</strong>: Release 3.1
+                with support for <strong>JWST</strong>. See the
+                <a href="viewer3_jup_help.shtml" target="_blank">help</a>
+                page for more information.
+            </div>
+
+            
+
+  <div class="pb-1">
+  
+    <input type="hidden" name="ephem" value="000 JUP365 + DE440">
+    The current ephemeris selection is <strong>JUP365 + DE440</strong>.
+  
+  </div>
+
+  <div>
+      
+      <ul>
+        <li>Galilean satellites & Amalthea, 1600 to 2600.</li>
+        <li>Thebe, Adrastea, & Metis, 1900 to 2100.</li>
+      </ul>
+      
+</div>
+
+
+
+
+            <h2><a href="viewer3_jup_help.shtml#TIME" target="_blank">Observation Time</a></h2>
+            <div class="indent">
+                <input type="text" name="time" size="30" maxlength="50" placeholder="Time format: YYYY-MM-DD HH:MM:SS" autocomplete="on" aria-label="observation time"/>
+                <strong>(Required)</strong>
+            </div>
+
+            <h2><a href="viewer3_jup_help.shtml#FOV" target="_blank">Field of View:</a></h2>
+            <div class="indent">
+                <input type="text" name="fov" size="12" maxlength="50"  autocomplete="on" aria-label="field of view"/>
+                <select name="fov_unit" autocomplete="on" aria-label="field of view unit">
+                    <option> seconds of arc
+                     <option> degrees
+                     <option> milliradians
+                     <option> microradians
+                     <option selected> Jupiter radii
+                     <option> kilometers
+                    
+                     <option> Voyager ISS wide angle FOVs
+                     <option> Voyager ISS narrow angle FOVs
+                     <option> Galileo SSI FOVs
+                    
+                    
+                     <option> Cassini ISS wide angle FOVs
+                     <option> Cassini ISS narrow angle FOVs
+                     <option> Cassini VIMS 64x64 FOVs
+                     <option> Cassini UVIS slit widths
+                    
+                </select>
+                <strong>(Required)</strong>
+            </div>
+
+            <h2><a href="viewer3_jup_help.shtml#CENTER" target="_blank">Diagram center:</a></h2>
+            <ul class="input-block">
+                <li>
+                    <label><input type="radio" name="center" value="body" checked  autocomplete="on"/> Body:</label>
+                    <select name="center_body" autocomplete="on" aria-label="select body">
+                      <option selected> Jupiter
+                      <option> Io (J1)
+                      <option> Europa (J2)
+                      <option> Ganymede (J3)
+                      <option> Callisto (J4)
+                      <option> Amalthea (J5)
+                      <option> Thebe (J14)
+                      <option> Adrastea (J15)
+                      <option> Metis (J16)
+                    </select>
+                </li>
+                <li>
+                    <label><input type="radio" name="center" value="ansa"  autocomplete="on"/> Ring ansa:</label>
+                    <select name="center_ansa" autocomplete="on" aria-label="select ring ansa">
+                      <option>          Halo
+                      <option selected> Main Ring
+                      <option>          Amalthea Ring
+                      <option>          Thebe Ring
+                    </select>
+                    <select name="center_ew" autocomplete="on" aria-label="select ring ansa direction">
+                      <option selected> east
+                      <option>          west
+                    </select>
+                </li>
+                <li>
+                    <label><input type="radio" name="center" value="J2000"  autocomplete="on"/>J2000 RA and Dec:</label>
+                    <input type="text" name="center_ra" size="12" maxlength="50"  autocomplete="on" aria-label="J2000 RA and Dec"/>
+                    <select name="center_ra_type" autocomplete="on" aria-label="select diagram center RA type">
+                      <option selected> hours
+                      <option>          degrees
+                    </select>
+                    <input type="text" name="center_dec" size="12" maxlength="50"  autocomplete="on" aria-label="degrees"/> degrees
+                </li>
+                <li>
+                    <label><input type="radio" name="center" value="star"  autocomplete="on"/> Star name:</label>
+                    <input type="text" name="center_star" size="12" maxlength="50"  autocomplete="on" aria-label="star name"/>
+                    (Click
+                    <a href="starlist_jup.txt">here</a> for the current list.)
+                </li>
+            </ul>
+
+            
+<h2><a href="viewer3_jup_help.shtml#VIEWPOINT" target="_blank">Viewpoint:</a></h2>
+<ul class="input-block">
+    <li>
+        <label><input type="radio" name="viewpoint" value="observatory" checked  autocomplete="on"/> Observatory:</label>
+        <select name="observatory"  autocomplete="on" aria-label="observatory"/>
+            <option selected> Earth's center
+            
+            
+            <option> Voyager 1
+            <option> Voyager 2
+            <option> Galileo
+            <option> Cassini
+            <option> New Horizons
+            <option> Juno
+            <option> JUICE
+            <option> Europa Clipper
+            
+            
+            <option> HST
+            <option> JWST
+              <option> Apache Point Observatory (32.780361, -105.820417, 2674.)
+  <option> Kitt Peak National Observatory (31.958833, -111.594694, 2058.4)
+  <option> Lowell Observatory (35.097, -111.537, 2200.)
+  <option> Mauna Kea Observatory (19.827, -155.472, 4215.)
+  <option> McDonald Observatory (30.671500, -104.022611, 2076.)
+  <option> Mt. Evans Observatory (39.587, -105.640, 4305.)
+  <option> NMSU Observatory (32.27631, -106.746556, 0.)
+  <option> Paranal Observatory/VLT (-24.625417, -70.402806, 2635.)
+  <option> Yerkes Observatory (41.098, 88.557, 334.)
+
+        </select>
+    </li>
+    <li>
+        <input type="radio" name="viewpoint" value="latlon"  autocomplete="on" aria-label="lat lon"/>
+        Latitude: <input type="text" name="latitude"  size="12" maxlength="50" value=""  autocomplete="on" aria-label="Latitude"/>
+        Longitude: <input type="text" name="longitude" size="12" maxlength="50" value=""  autocomplete="on" aria-label="Longitude"/>
+        <select name="lon_dir" autocomplete="on"  autocomplete="on" aria-label="viewpoint longitude direction">
+          <option selected> east
+          <option> west
+        </select>
+        Altitude: <input type="text" name="altitude" size="12" maxlength="50" value=""  autocomplete="on" aria-label="Altitude"/> (m)
+    </li>
+</ul>
+
+
+
+            <h2><a href="viewer3_jup_help.shtml#MOONS" target="_blank">Moon Selection:</a></h2>
+            <ul class="input-block">
+                <li>
+                    <label><input type="radio" name="moons" value="504 Galilean satellites (J1-J4)"  autocomplete="on"/> Galilean satellites (Io-Callisto, J1-J4)</label>
+                </li>
+                <li>
+                    <label><input type="radio" name="moons" value="505 Galileans satellites, Amalthea (J1-J5)"  autocomplete="on"/> ...plus Amalthea (J5)</label>
+                </li>
+                <li>
+                    <label><input type="radio" name="moons" value="516 All inner moons (J1-J5,J14-J16)" checked  autocomplete="on"/> ...plus Thebe, Adrastea, & Metis (J14-J16)</label>
+                </li>
+            </ul>
+
+            <h2><a href="viewer3_jup_help.shtml#RINGS" target="_blank">Ring Selection:</a></h2>
+            <ul class="input-block">
+                <li>
+                    <label><input type="radio" name="rings" value="None"  autocomplete="on"/> No rings</label>
+                </li>
+                <li>
+                    <label><input type="radio" name="rings" value="Main" checked  autocomplete="on"/> Main ring</label>
+                </li>
+                <li>
+                    <label><input type="radio" name="rings" value="Main & Gossamer"  autocomplete="on"/> ...plus Gossamer rings</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" name="torus" value="Yes"  autocomplete="on"/>
+                        <a href="viewer3_jup_help.shtml#TORUS" target="_blank">Io Torus:</a></label>
+                    Inclination (deg) =
+                    <input type="text" name="torus_inc" size="10" maxlength="20" value="6.8"  autocomplete="on" aria-label="inclination in degrees"/>
+                    Radius (km) =
+                    <input type="text" name="torus_rad" size="10" maxlength="20" value="422000"  autocomplete="on" aria-label="Radius in km"/>
+                </li>
+            </ul>
+
+            <h2><a href="viewer3_jup_help.shtml#STARS" target="_blank">Background Objects:</a></h2>
+            <ul class="input-block">
+                <li>
+                    <label><input type="checkbox" name="standard" value="Yes"  autocomplete="on"/> Standard stars</label>
+                    (Click
+                    <a href="starlist_jup.txt">here</a> for the current list.)
+                </li>
+                <li class="pb-1">
+                    <label><input type="checkbox" name="additional" value="Yes"  autocomplete="on"/> Additional star:</label>
+                    RA = <input type="text" name="extra_ra" size="12" maxlength="50"  autocomplete="on" aria-label="RA ="/>
+                    <select name="extra_ra_type" autocomplete="on" aria-label="select additional star RA type">
+                        <option selected> hours
+                        <option> degrees
+                    </select>
+                    Dec = <input type="text" name="extra_dec"  size="12" maxlength="50"  autocomplete="on" aria-label="Dec ="/>
+                    Label = <input type="text" name="extra_name" size="12" maxlength="50"  autocomplete="on" aria-label="Label ="/>
+                </li>
+                <li>
+                    Other bodies:&nbsp;&nbsp;
+                    <label><input type="checkbox" name="other" value="Sun"  autocomplete="on"/> Sun</label>
+                    <label><input type="checkbox" name="other" value="Anti-Sun"  autocomplete="on"/> Anti-Sun</label>
+                    <label><input type="checkbox" name="other" value="Earth"  autocomplete="on"/> Earth</label>
+                    
+                    <label><input type="checkbox" name="other" value="Voyager 1"  autocomplete="on"/> Voyager 1</label>
+                    <label><input type="checkbox" name="other" value="Voyager 2"  autocomplete="on"/> Voyager 2</label>
+                    <label><input type="checkbox" name="other" value="Galileo"  autocomplete="on"/> Galileo</label>
+                    <label><input type="checkbox" name="other" value="Cassini"  autocomplete="on"/> Cassini</label>
+                    <label><input type="checkbox" name="other" value="New Horizons"  autocomplete="on"/> New Horizons</label>
+                    <label><input type="checkbox" name="other" value="Juno"  autocomplete="on"/> Juno</label>
+                    <label><input type="checkbox" name="other" value="JUICE"  autocomplete="on"/> JUICE</label>
+                    <label><input type="checkbox" name="other" value="Europa Clipper"  autocomplete="on"/> Europa Clipper</label>
+                    
+                </li>
+            </ul>
+
+            <h2><a href="viewer3_jup_help.shtml#DIAGRAM" target="_blank">Diagram Options:</a></h2>
+            <ul class="input-block">
+                <li>
+                    <a href="viewer3_jup_help.shtml#TITLE" target="_blank">Plot Title:</a>
+                        <input type="text" name="title" size="40" maxlength="60" value=""  autocomplete="on" aria-label="plot title"/>
+                </li>
+                <li>
+                    <a href="viewer3_jup_help.shtml#LABELS" target="_blank">Moon & Star Labels:</a>
+                      <select name="labels" autocomplete="on" aria-label="moon and star labels"/>
+                        <option>          None
+                        <option selected> Small (6 points)
+                        <option>          Medium (9 points)
+                        <option>          Large (12 points)
+                    </select>
+                </li>
+                <li class="pb-1">
+                    <a href="viewer3_jup_help.shtml#ENLARGE" target="_blank">Moon Enlargement:</a>
+                        <input type="text" name="moonpts" size="5" maxlength="50" value="0"  autocomplete="on" aria-label="moon enlargement in points"/> (points)
+                </li>
+                
+                <li class="pb-1">
+                    <a href="viewer3_jup_help.shtml#BLANK" target="_blank">Blank disks:</a>&nbsp;&nbsp;
+                    <input type="radio" name="blank" value="Yes"  autocomplete="on" aria-label="blank disks yes"/> Yes
+                    <input type="radio" name="blank" value="No" checked  autocomplete="on" aria-label="blank disks no"/> No
+                </li>
+                
+                <li class="pb-1">
+                    <a href="viewer3_jup_help.shtml#MERIDIANS" target="_blank">Highlight prime meridians:</a>&nbsp;&nbsp;
+                    <input type="radio" name="meridians" value="Yes" checked  autocomplete="on" aria-label="highlight prime meridians yes"/> Yes
+                    <input type="radio" name="meridians" value="No"  autocomplete="on" aria-label="highlight prime meridians no"/> No
+                </li>
+                <li>
+                    <a href="viewer3_jup_help.shtml#OUTPUT" target="_blank">Output to:</a>&nbsp;&nbsp;
+                    <label><input type="radio" name="output" value="HTML" checked  autocomplete="on"/> Webpage & diagrams&nbsp;&nbsp;&nbsp;</label>
+                    <label><input type="radio" name="output" value="PDF"  autocomplete="on"/> PDF only&nbsp;&nbsp;&nbsp;</label>
+                    <label><input type="radio" name="output" value="JPEG"  autocomplete="on"/> JPEG only&nbsp;&nbsp;&nbsp;</label>
+                    <label><input type="radio" name="output" value="PS"  autocomplete="on"/> Postscript only</label>
+                </li>
+            </ul>
+
+            <div class="form-buttons">
+                <input type="submit" name="submit" value="Render diagram"/>
+                <input type="reset" name="reset" value="Reset form"/>
+            </div>
+        </form>
+
+        <hr/>
+    </div>
+    <footer>
+    <div class="footer-container">
+        <div class="left" role="navigation">
+            
+                <a href="ephem3_jup.shtml">Jupiter Ephemeris Generator</a>&nbsp;&#124;
+            
+            
+            
+                <a href="tracker3_jup.shtml">Jupiter Moon Tracker</a>&nbsp;&#124;
+            
+            <a href="index.html">RMS Node Tools</a>&nbsp;&#124;
+            <a href="/">Ring-Moon Systems Home</a>
+        </div>
+        <div class="right">
+            Last updated August 20, 2023
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
